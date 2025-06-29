@@ -10,7 +10,7 @@
     <None Update="Config\WorldSettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Config\DungeonSettings.json">
+    <None Update="Config\DungeonCharSettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

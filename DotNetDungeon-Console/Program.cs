@@ -3,17 +3,17 @@ using DotNetDungeon_Console.Models.Consts;
 using DotNetDungeon_Console.Utils;
 
 var worldSettings = JsonUtil.ConvertJsonPathToModelObject(PathsConst.WorldSettingsPath, new WorldSettingsModel());
-var dungeonSettings = JsonUtil.ConvertJsonPathToModelObject(PathsConst.DungeonSettingsPath, new DungeonSettingsModel());
+var dungeonCharSettings = JsonUtil.ConvertJsonPathToModelObject(PathsConst.DungeonCharSettingsPath, new DungeonCharSettingsModel());
 
 if (!worldSettings.Width.HasValue || !worldSettings.Height.HasValue)
 	throw new Exception();
 
-if (!dungeonSettings.Air.HasValue)
+if (!dungeonCharSettings.Air.HasValue)
 	throw new Exception();
 
 int height = worldSettings.Height.Value;
 int width = worldSettings.Width.Value;
-char airChar = dungeonSettings.Air.Value;
+char airChar = dungeonCharSettings.Air.Value;
 
 char[,] dungeonMatrix = new char[height, width];
 
