@@ -2,18 +2,23 @@
 using DotNetDungeon_Console.Models.Consts;
 using DotNetDungeon_Console.Utils;
 
-// Load Jsons
 var worldSettings = JsonUtil.ConvertJsonPathToModelObject(PathsConst.WorldSettingsPath, new WorldSettingsModel());
 var dungeonSettings = JsonUtil.ConvertJsonPathToModelObject(PathsConst.DungeonSettingsPath, new DungeonSettingsModel());
 
-// Display World Settings
-Console.WriteLine("World Settings:");
-Console.WriteLine($"Width: {worldSettings.Width}");
-Console.WriteLine($"Height: {worldSettings.Height}");
+if (!worldSettings.Width.HasValue || !worldSettings.Height.HasValue)
+	throw new Exception();
 
-Console.WriteLine();
+if (!dungeonSettings.Air.HasValue)
+	throw new Exception();
 
-// Display Dungeon Settings
-Console.WriteLine("Dungeon Settings:");
-Console.WriteLine($"Air character: '{dungeonSettings.Air}'");
-Console.WriteLine($"Wall character: '{dungeonSettings.Wall}'");
+int height = worldSettings.Height.Value;
+int width = worldSettings.Width.Value;
+char airChar = dungeonSettings.Air.Value;
+
+char[,] dungeonMatrix = new char[height, width];
+
+for (int y = 0; y < height; y++)
+	for (int x = 0; x < width; x++)
+		dungeonMatrix[y, x] = airChar;
+
+OutputUtil.PrintMatrix(dungeonMatrix);
