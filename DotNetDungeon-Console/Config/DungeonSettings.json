@@ -1,0 +1,8 @@
+{
+	"RoomProbabilityMin": 1,
+	"RoomProbabilityMax": 10,
+	"RoomHeightMin": 3,
+	"RoomHeightMax": 5,
+	"RoomWidthMin": 3,
+	"RoomWidthMax": 5
+}

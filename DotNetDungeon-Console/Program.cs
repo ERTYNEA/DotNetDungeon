@@ -3,6 +3,7 @@ using DotNetDungeon_Console.Models.Consts;
 using DotNetDungeon_Console.Utils;
 
 var worldSettings = JsonUtil.ConvertJsonPathToModelObject(PathsConst.WorldSettingsPath, new WorldSettingsModel());
+var dungeonSettings = JsonUtil.ConvertJsonPathToModelObject(PathsConst.DungeonSettingsPath, new DungeonSettings());
 var dungeonCharSettings = JsonUtil.ConvertJsonPathToModelObject(PathsConst.DungeonCharSettingsPath, new DungeonCharSettingsModel());
 
 if (!worldSettings.Width.HasValue || !worldSettings.Height.HasValue)
