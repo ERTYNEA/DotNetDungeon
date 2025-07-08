@@ -1,4 +1,4 @@
-﻿namespace DotNetDungeon_Console.Utils;
+namespace DotNetDungeon_Logic.Utils;
 
 using System;
 

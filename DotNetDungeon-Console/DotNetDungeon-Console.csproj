@@ -2,10 +2,13 @@
   <PropertyGroup>
     <RootNamespace>DotNetDungeon_Console</RootNamespace>
     <TargetFramework>net9.0</TargetFramework>
-    <OutputType>Exe</OutputType>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <OutputType>Exe</OutputType>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DotNetDungeon-Logic\DotNetDungeon-Logic.csproj" />
+  </ItemGroup>
   <ItemGroup>
     <None Update="Config\WorldSettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

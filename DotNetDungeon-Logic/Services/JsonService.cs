@@ -1,8 +1,8 @@
-﻿namespace DotNetDungeon_Console.Utils;
+namespace DotNetDungeon_Logic.Services;
 
 using System.Text.Json;
 
-public static class JsonUtil
+public static class JsonService
 {
 	public static T ConvertJsonPathToModelObject<T>(string jsonPath, T modelObjectEmpty)
 	{

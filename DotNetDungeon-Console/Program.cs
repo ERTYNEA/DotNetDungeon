@@ -1,10 +1,11 @@
 ﻿using DotNetDungeon_Console.Models;
 using DotNetDungeon_Console.Models.Consts;
-using DotNetDungeon_Console.Utils;
+using DotNetDungeon_Logic.Services;
+using DotNetDungeon_Logic.Utils;
 
-var worldSettings = JsonUtil.ConvertJsonPathToModelObject(PathsConst.WorldSettingsPath, new WorldSettingsModel());
-var dungeonSettings = JsonUtil.ConvertJsonPathToModelObject(PathsConst.DungeonSettingsPath, new DungeonSettings());
-var dungeonCharSettings = JsonUtil.ConvertJsonPathToModelObject(PathsConst.DungeonCharSettingsPath, new DungeonCharSettingsModel());
+var worldSettings = JsonService.ConvertJsonPathToModelObject(PathsConst.WorldSettingsPath, new WorldSettingsModel());
+var dungeonSettings = JsonService.ConvertJsonPathToModelObject(PathsConst.DungeonSettingsPath, new DungeonSettings());
+var dungeonCharSettings = JsonService.ConvertJsonPathToModelObject(PathsConst.DungeonCharSettingsPath, new DungeonCharSettingsModel());
 
 if (!worldSettings.Width.HasValue || !worldSettings.Height.HasValue)
 	throw new Exception();
@@ -39,4 +40,4 @@ for (int y = 0; y < height; y++)
 	}
 }
 
-OutputUtil.PrintMatrix(dungeonMatrix);
+OutputService.PrintMatrix(dungeonMatrix);

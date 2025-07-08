@@ -1,8 +1,8 @@
-﻿namespace DotNetDungeon_Console.Utils;
+namespace DotNetDungeon_Logic.Services;
 
 using System;
 
-public static class OutputUtil
+public static class OutputService
 {
 	public static void PrintMatrix(char[,] matrix)
 	{
