@@ -1,4 +1,4 @@
-﻿namespace DotNetDungeon_Console.Models.Consts;
+﻿namespace DotNetDungeon_Game.Models.Consts;
 
 public class PathsConst
 {

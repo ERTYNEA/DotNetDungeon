@@ -1,4 +1,4 @@
-namespace DotNetDungeon_Logic.Utils;
+namespace DotNetDungeon_Services.Utils;
 
 using System;
 

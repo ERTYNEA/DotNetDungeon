@@ -1,7 +1,7 @@
-﻿using DotNetDungeon_Console.Models;
-using DotNetDungeon_Console.Models.Consts;
-using DotNetDungeon_Logic.Services;
-using DotNetDungeon_Logic.Utils;
+﻿using DotNetDungeon_Game.Models;
+using DotNetDungeon_Game.Models.Consts;
+using DotNetDungeon_Services.Services;
+using DotNetDungeon_Services.Utils;
 
 var worldSettings = JsonService.ConvertJsonPathToModelObject(PathsConst.WorldSettingsPath, new WorldSettingsModel());
 var dungeonSettings = JsonService.ConvertJsonPathToModelObject(PathsConst.DungeonSettingsPath, new DungeonSettings());

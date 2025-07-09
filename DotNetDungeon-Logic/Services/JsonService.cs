@@ -1,4 +1,4 @@
-namespace DotNetDungeon_Logic.Services;
+namespace DotNetDungeon_Services.Services;
 
 using System.Text.Json;
 

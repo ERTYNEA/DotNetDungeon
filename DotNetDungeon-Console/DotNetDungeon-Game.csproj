@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <RootNamespace>DotNetDungeon_Console</RootNamespace>
+    <RootNamespace>DotNetDungeon_Game</RootNamespace>
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DotNetDungeon-Logic\DotNetDungeon-Logic.csproj" />
+    <ProjectReference Include="..\DotNetDungeon-Logic\DotNetDungeon-Services.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Config\WorldSettings.json">

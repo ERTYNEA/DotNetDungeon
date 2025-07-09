@@ -1,4 +1,4 @@
-﻿namespace DotNetDungeon_Console.Models;
+﻿namespace DotNetDungeon_Game.Models;
 
 public class DungeonCharSettingsModel
 {
