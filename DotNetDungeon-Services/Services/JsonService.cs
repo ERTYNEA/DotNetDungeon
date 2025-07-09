@@ -1,10 +1,11 @@
 namespace DotNetDungeon_Services.Services;
 
+using DotNetDungeon_Services.Interfaces;
 using System.Text.Json;
 
-public static class JsonService
+public class JsonService : IJsonService
 {
-	public static T ConvertJsonPathToModelObject<T>(string jsonPath, T modelObjectEmpty)
+	public T ConvertJsonPathToModelObject<T>(string jsonPath, T modelObjectEmpty)
 	{
 		if (!File.Exists(jsonPath))
 			throw new Exception();

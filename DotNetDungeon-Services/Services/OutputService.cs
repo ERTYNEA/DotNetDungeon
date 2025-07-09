@@ -1,10 +1,11 @@
 namespace DotNetDungeon_Services.Services;
 
+using DotNetDungeon_Services.Interfaces;
 using System;
 
-public static class OutputService
+public class OutputService : IOutputService
 {
-	public static void PrintMatrix(char[,] matrix)
+	public void PrintMatrix(char[,] matrix)
 	{
 		if (matrix == null)
 			throw new Exception();
