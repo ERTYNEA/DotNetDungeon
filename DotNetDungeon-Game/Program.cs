@@ -1,7 +1,7 @@
 ﻿using DotNetDungeon_Game.Models;
 using DotNetDungeon_Game.Models.Consts;
 using DotNetDungeon_Services.Services;
-using DotNetDungeon_Services.Utils;
+using DotNetDungeon_Utils;
 
 var worldSettings = JsonService.ConvertJsonPathToModelObject(PathsConst.WorldSettingsPath, new WorldSettingsModel());
 var dungeonSettings = JsonService.ConvertJsonPathToModelObject(PathsConst.DungeonSettingsPath, new DungeonSettings());
@@ -31,7 +31,7 @@ for (int y = 0; y < height; y++)
 	{
 		char cellChar = airChar;
 
-		int randomValue = MathUtil.GenerateRandomInteger(1, maxProbability);
+		int randomValue = MathUtil.GenerateRandomInteger(1, maxProbability); // REVIEW: Delete - use a service and delete the reference Utils from the csproj.
 
 		if (randomValue <= minProbability)
 			cellChar = wallChar;
