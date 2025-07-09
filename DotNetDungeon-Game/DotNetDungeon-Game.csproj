@@ -7,7 +7,7 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DotNetDungeon-Logic\DotNetDungeon-Services.csproj" />
+    <ProjectReference Include="..\DotNetDungeon-Services\DotNetDungeon-Services.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Config\WorldSettings.json">
