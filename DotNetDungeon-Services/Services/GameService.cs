@@ -7,10 +7,9 @@ using System.Collections.Generic;
 
 public class GameService : IGameService
 {
-	// REVIEW: Move to the json
 	private const int MinSpaceBetweenRooms = 3;
 
-	public char[,] GenerateDungeon(
+	public char[,] GenerateDungeonLevel(
 		int height,
 		int width,
 		int minProbability,
@@ -131,7 +130,6 @@ public class GameService : IGameService
 		}
 	}
 
-	// REVIEW: Move to the another file
 	private class Room
 	{
 		public int Y { get; }

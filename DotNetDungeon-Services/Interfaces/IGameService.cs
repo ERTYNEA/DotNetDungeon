@@ -2,7 +2,7 @@ namespace DotNetDungeon_Services.Interfaces;
 
 public interface IGameService
 {
-	char[,] GenerateDungeon(
+	char[,] GenerateDungeonLevel(
 		int height,
 		int width,
 		int minProbability,

@@ -34,7 +34,7 @@ char nothingChar = dungeonCharSettings.Nothing.Value;
 char wallChar = dungeonCharSettings.Wall.Value;
 char floorChar = dungeonCharSettings.Floor.Value;
 
-char[,] dungeonMatrix = gameService.GenerateDungeon(
+char[,] dungeonMatrix = gameService.GenerateDungeonLevel(
 	height,
 	width,
 	minProbability,

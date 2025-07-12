@@ -1,5 +1,5 @@
 {
 	"Nothing": " ",
-	"Wall": "█",
+	"Wall": "#",
 	"Floor": "."
 }
