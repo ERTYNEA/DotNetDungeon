@@ -7,17 +7,8 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DotNetDungeon-Configs\DotNetDungeon-Configs.csproj" />
+    <ProjectReference Include="..\DotNetDungeon-Models\DotNetDungeon-Models.csproj" />
     <ProjectReference Include="..\DotNetDungeon-Services\DotNetDungeon-Services.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Update="Config\WorldSettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Config\DungeonSettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Config\DungeonCharSettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 </Project>

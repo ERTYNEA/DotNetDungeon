@@ -1,5 +1,5 @@
-﻿using DotNetDungeon_Game.Models;
-using DotNetDungeon_Game.Models.Consts;
+﻿using DotNetDungeon_Configs.Consts;
+using DotNetDungeon_Models;
 using DotNetDungeon_Services.Interfaces;
 using DotNetDungeon_Services.Services;
 

@@ -1,4 +1,4 @@
-﻿namespace DotNetDungeon_Game.Models;
+namespace DotNetDungeon_Models;
 
 public class DungeonSettings
 {
