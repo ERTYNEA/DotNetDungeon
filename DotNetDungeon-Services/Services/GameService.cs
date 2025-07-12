@@ -5,7 +5,7 @@ using DotNetDungeon_Utils;
 
 public class GameService : IGameService
 {
-	public char[,] GenerateDungeon(int height, int width, int minProbability, int maxProbability, char airChar, char wallChar)
+	public char[,] GenerateDungeon(int height, int width, int minProbability, int maxProbability, char nothingChar, char wallChar, char floorChar)
 	{
 		char[,] dungeonMatrix = new char[height, width];
 
@@ -13,7 +13,7 @@ public class GameService : IGameService
 		{
 			for (int x = 0; x < width; x++)
 			{
-				char cellChar = airChar;
+				char cellChar = nothingChar;
 
 				int randomValue = MathUtil.GenerateRandomInteger(1, maxProbability);
 
