@@ -11,19 +11,25 @@ var worldSettings = jsonService.ConvertJsonPathToModelObject(PathsConst.WorldSet
 var dungeonSettings = jsonService.ConvertJsonPathToModelObject(PathsConst.DungeonSettingsPath, new DungeonSettings());
 var dungeonCharSettings = jsonService.ConvertJsonPathToModelObject(PathsConst.DungeonCharSettingsPath, new DungeonCharSettingsModel());
 
-if (!worldSettings.Width.HasValue || !worldSettings.Height.HasValue)
+if (!worldSettings.Height.HasValue || !worldSettings.Width.HasValue)
+	throw new Exception();
+
+if (!dungeonSettings.RoomProbabilityMin.HasValue || !dungeonSettings.RoomProbabilityMax.HasValue ||
+	!dungeonSettings.RoomHeightMin.HasValue || !dungeonSettings.RoomHeightMax.HasValue ||
+	!dungeonSettings.RoomWidthMin.HasValue || !dungeonSettings.RoomWidthMax.HasValue)
 	throw new Exception();
 
 if (!dungeonCharSettings.Nothing.HasValue || !dungeonCharSettings.Wall.HasValue || !dungeonCharSettings.Floor.HasValue)
-	throw new Exception();
-
-if (!dungeonSettings.RoomProbabilityMin.HasValue || !dungeonSettings.RoomProbabilityMax.HasValue)
 	throw new Exception();
 
 int height = worldSettings.Height.Value;
 int width = worldSettings.Width.Value;
 int minProbability = dungeonSettings.RoomProbabilityMin.Value;
 int maxProbability = dungeonSettings.RoomProbabilityMax.Value;
+int roomHeightMin = dungeonSettings.RoomHeightMin.Value;
+int roomHeightMax = dungeonSettings.RoomHeightMax.Value;
+int roomWidthMin = dungeonSettings.RoomWidthMin.Value;
+int roomWidthMax = dungeonSettings.RoomWidthMax.Value;
 char nothingChar = dungeonCharSettings.Nothing.Value;
 char wallChar = dungeonCharSettings.Wall.Value;
 char floorChar = dungeonCharSettings.Floor.Value;
@@ -33,6 +39,10 @@ char[,] dungeonMatrix = gameService.GenerateDungeon(
 	width,
 	minProbability,
 	maxProbability,
+	roomHeightMin,
+	roomHeightMax,
+	roomWidthMin,
+	roomWidthMax,
 	nothingChar,
 	wallChar,
 	floorChar);

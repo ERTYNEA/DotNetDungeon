@@ -1,8 +1,8 @@
 {
 	"RoomProbabilityMin": 1,
 	"RoomProbabilityMax": 10,
-	"RoomHeightMin": 3,
-	"RoomHeightMax": 5,
-	"RoomWidthMin": 3,
-	"RoomWidthMax": 5
+	"RoomHeightMin": 5,
+	"RoomHeightMax": 10,
+	"RoomWidthMin": 5,
+	"RoomWidthMax": 10
 }
