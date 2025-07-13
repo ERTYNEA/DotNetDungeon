@@ -5,8 +5,8 @@ public interface IGameService
 	char[,] GenerateDungeonLevel(
 		int height,
 		int width,
-		int minProbability,
-		int maxProbability,
+		int roomNumberForLevelMin,
+		int roomNumberForLevelMax,
 		int roomHeightMin,
 		int roomHeightMax,
 		int roomWidthMin,

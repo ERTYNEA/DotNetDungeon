@@ -2,8 +2,8 @@ namespace DotNetDungeon_Models;
 
 public class DungeonSettings
 {
-	public int? RoomProbabilityMin { get; set; }
-	public int? RoomProbabilityMax { get; set; }
+	public int? RoomNumberForLevelMin { get; set; }
+	public int? RoomNumberForLevelMax { get; set; }
 	public int? RoomHeightMin { get; set; }
 	public int? RoomHeightMax { get; set; }
 	public int? RoomWidthMin { get; set; }

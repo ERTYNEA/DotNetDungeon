@@ -14,7 +14,7 @@ var dungeonCharSettings = jsonService.ConvertJsonPathToModelObject(PathsConst.Du
 if (!worldSettings.Height.HasValue || !worldSettings.Width.HasValue)
 	throw new Exception();
 
-if (!dungeonSettings.RoomProbabilityMin.HasValue || !dungeonSettings.RoomProbabilityMax.HasValue ||
+if (!dungeonSettings.RoomNumberForLevelMin.HasValue || !dungeonSettings.RoomNumberForLevelMax.HasValue ||
 	!dungeonSettings.RoomHeightMin.HasValue || !dungeonSettings.RoomHeightMax.HasValue ||
 	!dungeonSettings.RoomWidthMin.HasValue || !dungeonSettings.RoomWidthMax.HasValue)
 	throw new Exception();
@@ -24,8 +24,8 @@ if (!dungeonCharSettings.Nothing.HasValue || !dungeonCharSettings.Wall.HasValue 
 
 int height = worldSettings.Height.Value;
 int width = worldSettings.Width.Value;
-int minProbability = dungeonSettings.RoomProbabilityMin.Value;
-int maxProbability = dungeonSettings.RoomProbabilityMax.Value;
+int roomNumberForLevelMin = dungeonSettings.RoomNumberForLevelMin.Value;
+int roomNumberForLevelMax = dungeonSettings.RoomNumberForLevelMax.Value;
 int roomHeightMin = dungeonSettings.RoomHeightMin.Value;
 int roomHeightMax = dungeonSettings.RoomHeightMax.Value;
 int roomWidthMin = dungeonSettings.RoomWidthMin.Value;
@@ -37,8 +37,8 @@ char floorChar = dungeonCharSettings.Floor.Value;
 char[,] dungeonMatrix = gameService.GenerateDungeonLevel(
 	height,
 	width,
-	minProbability,
-	maxProbability,
+	roomNumberForLevelMin,
+	roomNumberForLevelMax,
 	roomHeightMin,
 	roomHeightMax,
 	roomWidthMin,
