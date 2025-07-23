@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DotNetDungeon-Objets\DotNetDungeon-Objets.csproj" />
     <ProjectReference Include="..\DotNetDungeon-Utils\DotNetDungeon-Utils.csproj" />
   </ItemGroup>
 </Project>

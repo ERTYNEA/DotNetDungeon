@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetDungeon-Configs", "Do
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetDungeon-Models", "DotNetDungeon-Models\DotNetDungeon-Models.csproj", "{F2E837CE-0A5A-4A64-83B3-63989712500B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetDungeon-Objets", "DotNetDungeon-Objets\DotNetDungeon-Objets.csproj", "{551E842C-9998-4B7F-8489-0821571A6068}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{F2E837CE-0A5A-4A64-83B3-63989712500B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2E837CE-0A5A-4A64-83B3-63989712500B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2E837CE-0A5A-4A64-83B3-63989712500B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{551E842C-9998-4B7F-8489-0821571A6068}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{551E842C-9998-4B7F-8489-0821571A6068}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{551E842C-9998-4B7F-8489-0821571A6068}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{551E842C-9998-4B7F-8489-0821571A6068}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

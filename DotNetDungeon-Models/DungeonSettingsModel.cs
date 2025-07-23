@@ -1,6 +1,6 @@
 namespace DotNetDungeon_Models;
 
-public class DungeonSettings
+public class DungeonSettingsModel
 {
 	public int? RoomNumberForLevelMin { get; set; }
 	public int? RoomNumberForLevelMax { get; set; }

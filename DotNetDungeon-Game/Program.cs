@@ -8,7 +8,7 @@ IGameService gameService = new GameService();
 IOutputService outputService = new OutputService();
 
 var worldSettings = jsonService.ConvertJsonPathToModelObject(PathsConst.WorldSettingsPath, new WorldSettingsModel());
-var dungeonSettings = jsonService.ConvertJsonPathToModelObject(PathsConst.DungeonSettingsPath, new DungeonSettings());
+var dungeonSettings = jsonService.ConvertJsonPathToModelObject(PathsConst.DungeonSettingsPath, new DungeonSettingsModel());
 var dungeonCharSettings = jsonService.ConvertJsonPathToModelObject(PathsConst.DungeonCharSettingsPath, new DungeonCharSettingsModel());
 
 if (!worldSettings.Height.HasValue || !worldSettings.Width.HasValue)

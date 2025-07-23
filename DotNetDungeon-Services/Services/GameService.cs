@@ -1,5 +1,6 @@
 ﻿namespace DotNetDungeon_Services.Services;
 
+using DotNetDungeon_Objets;
 using DotNetDungeon_Services.Interfaces;
 using DotNetDungeon_Utils;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ public class GameService : IGameService
 			for (int x = 0; x < width; x++)
 				dungeonLevelMatrix[y, x] = nothingChar;
 
-		List<Room> rooms = new List<Room>();
+		List<RoomObject> rooms = new List<RoomObject>();
 
 		int roomsToGenerate = MathUtil.GenerateRandomInteger(roomNumberForLevelMin, roomNumberForLevelMax);
 
@@ -42,10 +43,10 @@ public class GameService : IGameService
 			int roomY = MathUtil.GenerateRandomInteger(0, height - roomHeight);
 			int roomX = MathUtil.GenerateRandomInteger(0, width - roomWidth);
 
-			Room newRoom = new Room(roomY, roomX, roomHeight, roomWidth);
+			RoomObject newRoom = new RoomObject(roomY, roomX, roomHeight, roomWidth);
 
 			bool isDuplicate = false;
-			foreach (Room existingRoom in rooms)
+			foreach (RoomObject existingRoom in rooms)
 			{
 				if (existingRoom.Y == newRoom.Y &&
 					existingRoom.X == newRoom.X &&
@@ -63,27 +64,11 @@ public class GameService : IGameService
 				rooms.Add(newRoom);
 		}
 
-		foreach (Room room in rooms)
+		foreach (RoomObject room in rooms)
 			for (int y = room.Y; y < room.Y + room.Height; y++)
 				for (int x = room.X; x < room.X + room.Width; x++)
 					dungeonLevelMatrix[y, x] = floorChar;
 
 		return dungeonLevelMatrix;
-	}
-
-	private class Room
-	{
-		public int Y { get; }
-		public int X { get; }
-		public int Height { get; }
-		public int Width { get; }
-
-		public Room(int y, int x, int height, int width)
-		{
-			Y = y;
-			X = x;
-			Height = height;
-			Width = width;
-		}
 	}
 }
