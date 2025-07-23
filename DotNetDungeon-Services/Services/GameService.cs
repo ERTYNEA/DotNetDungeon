@@ -45,22 +45,35 @@ public class GameService : IGameService
 
 			RoomObject newRoom = new RoomObject(roomY, roomX, roomHeight, roomWidth);
 
-			bool isDuplicate = false;
+			bool[,] occupiedArea = new bool[height, width];
+
 			foreach (RoomObject existingRoom in rooms)
 			{
-				if (existingRoom.Y == newRoom.Y &&
-					existingRoom.X == newRoom.X &&
-					existingRoom.Height == newRoom.Height &&
-					existingRoom.Width == newRoom.Width)
+				for (int y = existingRoom.Y; y < existingRoom.Y + existingRoom.Height; y++)
+					for (int x = existingRoom.X; x < existingRoom.X + existingRoom.Width; x++)
+						occupiedArea[y, x] = true;
+			}
+
+			bool addsNewArea = false;
+
+			for (int y = newRoom.Y; y < newRoom.Y + newRoom.Height; y++)
+			{
+				for (int x = newRoom.X; x < newRoom.X + newRoom.Width; x++)
 				{
-					isDuplicate = true;
-					break;
+					if (!occupiedArea[y, x])
+					{
+						addsNewArea = true;
+						break;
+					}
 				}
+
+				if (addsNewArea)
+					break;
 			}
 
 			bool fitsInMatrix = (roomY + roomHeight <= height) && (roomX + roomWidth <= width);
 
-			if (!isDuplicate && fitsInMatrix)
+			if (addsNewArea && fitsInMatrix)
 				rooms.Add(newRoom);
 		}
 
