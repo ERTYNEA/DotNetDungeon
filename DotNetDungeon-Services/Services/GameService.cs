@@ -51,9 +51,8 @@ public class GameService : IGameService
 			// Generates random size and position ensuring the room fits within the dungeon
 			int roomHeight = MathUtil.GenerateRandomInteger(roomHeightMin, roomHeightMax);
 			int roomWidth = MathUtil.GenerateRandomInteger(roomWidthMin, roomWidthMax);
-			// TODO - REVIEW: Position "1" is just a temporary workaround until we see how the walls are generated (it should start at position "0")
-			int roomY = MathUtil.GenerateRandomInteger(1, height - roomHeight - 1);
-			int roomX = MathUtil.GenerateRandomInteger(1, width - roomWidth - 1);
+			int roomY = MathUtil.GenerateRandomInteger(0, height - roomHeight);
+			int roomX = MathUtil.GenerateRandomInteger(0, width - roomWidth);
 
 			// Create a new room object with the randomly generated position and dimensions
 			RoomObject newRoom = new RoomObject(roomY, roomX, roomHeight, roomWidth);
@@ -62,12 +61,11 @@ public class GameService : IGameService
 			foreach (RoomObject existingRoom in rooms)
 			{
 				// Check for internal overlap between rooms
-				// TODO - REVIEW: Position "1"
 				bool innerOverlap =
-					newRoom.X < existingRoom.X + existingRoom.Width - 1 &&
-					newRoom.X + newRoom.Width - 1 > existingRoom.X &&
-					newRoom.Y < existingRoom.Y + existingRoom.Height - 1 &&
-					newRoom.Y + newRoom.Height - 1 > existingRoom.Y;
+					newRoom.X < existingRoom.X + existingRoom.Width &&
+					newRoom.X + newRoom.Width > existingRoom.X &&
+					newRoom.Y < existingRoom.Y + existingRoom.Height &&
+					newRoom.Y + newRoom.Height > existingRoom.Y;
 
 				// If rooms overlap exit the loop
 				if (innerOverlap)
@@ -75,9 +73,10 @@ public class GameService : IGameService
 			}
 
 			// Add the new room to the list of rooms
-			rooms.Add(newRoom);				
+			rooms.Add(newRoom);
 		}
 
+		// Fill the dungeon level matrix with the floor (floorChar) for each room
 		foreach (RoomObject room in rooms)
 			for (int y = room.Y; y < room.Y + room.Height; y++)
 				for (int x = room.X; x < room.X + room.Width; x++)
@@ -231,31 +230,27 @@ public class GameService : IGameService
 			}
 		}
 
+		// TODO - FIX: There's a "small" bug with corridors when they form an "L" shape, as they get blocked by a wall
+		// Convert floor tiles to wall tiles if they're adjacent to nothing (nothingChar) or at the edge of the world
 		for (int y = 0; y < height; y++)
-		{
 			for (int x = 0; x < width; x++)
-			{
 				if (dungeonLevelMatrix[y, x] == floorChar)
-				{
 					for (int dy = -1; dy <= 1; dy++)
-					{
 						for (int dx = -1; dx <= 1; dx++)
 						{
+							// Skip the cell itself
+							if (dy == 0 && dx == 0)
+								continue;
+
+							// Calculate the coordinates of the adjacent cell
 							int newY = y + dy;
 							int newX = x + dx;
 
-							if (newY >= 0 && newY < height && newX >= 0 && newX < width)
-							{
-								if (dungeonLevelMatrix[newY, newX] == nothingChar)
-								{
-									dungeonLevelMatrix[newY, newX] = wallChar;
-								}
-							}
+							// If adjacent cell is outside the dungeon bounds or contains nothing
+							if (newY < 0 || newY >= height || newX < 0 || newX >= width ||
+								dungeonLevelMatrix[newY, newX] == nothingChar)
+								dungeonLevelMatrix[y, x] = wallChar;
 						}
-					}
-				}
-			}
-		}
 
 		return dungeonLevelMatrix;
 	}
