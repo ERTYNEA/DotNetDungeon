@@ -20,27 +20,42 @@ public class GameService : IGameService
 		char wallChar,
 		char floorChar)
 	{
+		// Create a 2D char matrix to represent the dungeon level grid
 		char[,] dungeonLevelMatrix = new char[height, width];
 
+		// Initialize the dungeon matrix by filling it completely with empty space (nothingChar)
 		for (int y = 0; y < height; y++)
 			for (int x = 0; x < width; x++)
 				dungeonLevelMatrix[y, x] = nothingChar;
 
+		// Create an empty list to store all rooms that will be generated
 		List<RoomObject> rooms = new List<RoomObject>();
+
+		// Randomly determine the number of rooms to generate in the level
 		int roomsToGenerate = MathUtil.GenerateRandomInteger(roomNumberForLevelMin, roomNumberForLevelMax);
+
+		// Initialize counters to prevent infinite loops if room placement becomes impossible
 		int attemptsCount = 0;
 		int maxAttempts = roomsToGenerate * 10;
 
+		// Main room generation loop - continues until we have enough rooms or run out of attempts
 		while (rooms.Count < roomsToGenerate && attemptsCount < maxAttempts)
 		{
+			// Increment attempt counter in each iteration
 			attemptsCount++;
 
+			// Generates random size and position ensuring the room fits within the dungeon
 			int roomHeight = MathUtil.GenerateRandomInteger(roomHeightMin, roomHeightMax);
 			int roomWidth = MathUtil.GenerateRandomInteger(roomWidthMin, roomWidthMax);
 			int roomY = MathUtil.GenerateRandomInteger(0, height - roomHeight);
 			int roomX = MathUtil.GenerateRandomInteger(0, width - roomWidth);
 
+			// Create a new room object with the randomly generated position and dimensions
 			RoomObject newRoom = new RoomObject(roomY, roomX, roomHeight, roomWidth);
+
+			// Initialize flags to track room validation criteria
+			// overlapsWithExistingRoom: Checks if the new room overlaps with any existing room (not allowed)
+			// connectsWithExistingRoom: Checks if the new room connects with any existing room (required after first room)
 			bool overlapsWithExistingRoom = false;
 			bool connectsWithExistingRoom = false;
 
