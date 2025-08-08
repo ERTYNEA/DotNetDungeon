@@ -7,7 +7,13 @@ public class RoomObject
 	public int Height { get; }
 	public int Width { get; }
 
-	// TODO - COPILOT: We need to put a summary here that indicates what this method does
+	/// <summary>
+	/// Creates a new room with the specified position and dimensions
+	/// </summary>
+	/// <param name="y">The y-coordinate of the room's position</param>
+	/// <param name="x">The x-coordinate of the room's position</param>
+	/// <param name="height">The height of the room</param>
+	/// <param name="width">The width of the room</param>
 	public RoomObject(int y, int x, int height, int width)
 	{
 		Y = y;

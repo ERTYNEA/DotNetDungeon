@@ -4,17 +4,22 @@ using System;
 
 public static class MathUtil
 {
-	// TODO - COPILOT: We need to put a summary here that indicates what this method does
+	/// <summary>
+	/// Generates a random integer within the specified inclusive range [min, max]
+	/// </summary>
+	/// <param name="min">The minimum value (inclusive)</param>
+	/// <param name="max">The maximum value (inclusive)</param>
+	/// <returns>A random integer between min and max</returns>
 	public static int GenerateRandomInteger(int min, int max)
 	{
-		// TODO - COPILOT: We need to explain what this part of the code does
+		// Validate input parameters to ensure min is not greater than max
 		if (min > max)
 			throw new Exception();
 
-		// TODO - COPILOT: We need to explain what this part of the code does
+		// Create a new Random instance for generating random numbers
 		Random random = new Random();
 
-		// TODO - COPILOT: We need to explain what this part of the code does
+		// Return a random number between min (inclusive) and max (inclusive)
 		return random.Next(min, max + 1);
 	}
 }
