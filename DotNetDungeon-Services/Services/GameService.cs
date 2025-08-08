@@ -277,6 +277,7 @@ public class GameService : IGameService
 								dungeonLevelMatrix[y, x] = wallChar;
 						}
 
+		// return the generated dungeon level matrix
 		return dungeonLevelMatrix;
 	}
 }
