@@ -254,13 +254,19 @@ public class GameService : IGameService
 							if (x >= 0 && x < width && y >= 0 && y < height)
 								dungeonLevelMatrix[y, x] = floorChar;
 
+					// Fill the corner area
+					int cornerSize = Math.Max(corridorWidth, corridorHeight);
+					for (int y = horizontalY - cornerSize / 2; y <= horizontalY + cornerSize / 2; y++)
+						for (int x = verticalX - cornerSize / 2; x <= verticalX + cornerSize / 2; x++)
+							if (x >= 0 && x < width && y >= 0 && y < height)
+								dungeonLevelMatrix[y, x] = floorChar;
+
 					// Connect the clusters
 					connectedClusters.Add(closestCluster2);
 				}
 			}
 		}
 
-		// TODO - FIX: There's a "small" bug with corridors when they form an "L" shape, as they get blocked by a wall
 		// Convert floor tiles to wall tiles if they're adjacent to nothing (nothingChar) or at the edge of the world
 		for (int y = 0; y < height; y++)
 			for (int x = 0; x < width; x++)
