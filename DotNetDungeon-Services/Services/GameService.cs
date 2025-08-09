@@ -159,39 +159,49 @@ public class GameService : IGameService
 		// Connect all separate room clusters with L-shaped corridors to ensure full dungeon traversability
 		if (roomsClusters.Count > 1)
 		{
+			// Create a list to hold representatives for each cluster
 			List<(int clusterIndex, RoomObject representativeRoom)> clusterRepresentatives = new List<(int, RoomObject)>();
 
+			// Initialize representatives with the first room of each cluster
 			for (int i = 0; i < roomsClusters.Count; i++)
-			{
 				clusterRepresentatives.Add((i, roomsClusters[i][0]));
-			}
 
+			// Create a set to track connected clusters
 			HashSet<int> connectedClusters = new HashSet<int>();
 			connectedClusters.Add(0);
 
+			// Continue until all clusters are connected
 			while (connectedClusters.Count < roomsClusters.Count)
 			{
+				// Initialize variables to track the closest clusters and their distance
 				int closestCluster1 = -1;
 				int closestCluster2 = -1;
 				int shortestDistance = int.MaxValue;
 
+				// Find the closest pair of clusters
 				foreach (int connectedIndex in connectedClusters)
 				{
+					// Compare with all other clusters
 					for (int i = 0; i < clusterRepresentatives.Count; i++)
 					{
+						// Skip already connected clusters
 						if (connectedClusters.Contains(i))
 							continue;
 
+						// Get the representative rooms for both clusters
 						RoomObject room1 = clusterRepresentatives[connectedIndex].representativeRoom;
 						RoomObject room2 = clusterRepresentatives[i].representativeRoom;
 
+						// Calculate the center points of both rooms
 						int centerX1 = room1.X + room1.Width / 2;
 						int centerY1 = room1.Y + room1.Height / 2;
 						int centerX2 = room2.X + room2.Width / 2;
 						int centerY2 = room2.Y + room2.Height / 2;
 
+						// Calculate the distance between the two center points
 						int distance = Math.Abs(centerX1 - centerX2) + Math.Abs(centerY1 - centerY2);
 
+						// Check if this pair is the closest so far
 						if (distance < shortestDistance)
 						{
 							shortestDistance = distance;
@@ -201,55 +211,50 @@ public class GameService : IGameService
 					}
 				}
 
+				// If a closest pair was found, connect the clusters with a corridor
 				if (closestCluster1 != -1 && closestCluster2 != -1)
 				{
+					// Get the representative rooms for both clusters
 					RoomObject room1 = clusterRepresentatives[closestCluster1].representativeRoom;
 					RoomObject room2 = clusterRepresentatives[closestCluster2].representativeRoom;
 
+					// Calculate the center points of both rooms
 					int centerX1 = room1.X + room1.Width / 2;
 					int centerY1 = room1.Y + room1.Height / 2;
 					int centerX2 = room2.X + room2.Width / 2;
 					int centerY2 = room2.Y + room2.Height / 2;
 
+					// Default corridor size
 					int corridorWidth = 3;
 					int corridorHeight = 3;
 
-					int startX = Math.Min(centerX1, centerX2);
-					int endX = Math.Max(centerX1, centerX2);
-
+					// Calculate the horizontal corridor position
+					int horizontalStartX = Math.Min(centerX1, centerX2);
+					int horizontalEndX = Math.Max(centerX1, centerX2);
 					int horizontalY = centerY1;
 					horizontalY = Math.Max(horizontalY, corridorHeight / 2);
 					horizontalY = Math.Min(horizontalY, height - corridorHeight / 2 - 1);
 
-					for (int x = startX; x <= endX; x++)
-					{
+					// Create the horizontal corridor
+					for (int x = horizontalStartX; x <= horizontalEndX; x++)
 						for (int y = horizontalY - corridorHeight / 2; y <= horizontalY + corridorHeight / 2; y++)
-						{
 							if (x >= 0 && x < width && y >= 0 && y < height)
-							{
 								dungeonLevelMatrix[y, x] = floorChar;
-							}
-						}
-					}
 
+					// Calculate the vertical corridor position
+					int verticalStartY = Math.Min(centerY1, centerY2);
+					int verticalEndY = Math.Max(centerY1, centerY2);
 					int verticalX = centerX2;
 					verticalX = Math.Max(verticalX, corridorWidth / 2);
 					verticalX = Math.Min(verticalX, width - corridorWidth / 2 - 1);
 
-					int startY = Math.Min(horizontalY, centerY2);
-					int endY = Math.Max(horizontalY, centerY2);
-
-					for (int y = startY; y <= endY; y++)
-					{
+					// Create the vertical corridor
+					for (int y = verticalStartY; y <= verticalEndY; y++)
 						for (int x = verticalX - corridorWidth / 2; x <= verticalX + corridorWidth / 2; x++)
-						{
 							if (x >= 0 && x < width && y >= 0 && y < height)
-							{
 								dungeonLevelMatrix[y, x] = floorChar;
-							}
-						}
-					}
 
+					// Connect the clusters
 					connectedClusters.Add(closestCluster2);
 				}
 			}
