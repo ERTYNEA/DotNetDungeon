@@ -7,7 +7,7 @@ using FluentAssertions;
 public sealed class MathUtilTests
 {
 	[TestMethod]
-	public void GenerateRandomInteger_min_is_greater_than_max()
+	public void GenerateRandomInteger_MinIsGreaterThanMax()
 	{
 		// Arrange
 		int min = 2;
@@ -21,7 +21,7 @@ public sealed class MathUtilTests
 	}
 
 	[TestMethod]
-	public void GenerateRandomInteger_min_is_equal_to_max()
+	public void GenerateRandomInteger_MinIsEqualToMax()
 	{
 		// Arrange
 		int min = 1;
@@ -35,7 +35,7 @@ public sealed class MathUtilTests
 	}
 
 	[TestMethod]
-	public void GenerateRandomInteger_min_is_less_than_max()
+	public void GenerateRandomInteger_MinIsLessThanMax()
 	{
 		// Arrange
 		int min = 1;
