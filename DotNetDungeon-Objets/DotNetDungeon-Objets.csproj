@@ -1,11 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <RootNamespace>DotNetDungeon_Objets</RootNamespace>
     <TargetFramework>net9.0</TargetFramework>
-    <RootNamespace>DotNetDungeon_Console</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
 </Project>

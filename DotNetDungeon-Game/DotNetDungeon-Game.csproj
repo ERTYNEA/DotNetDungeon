@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>DotNetDungeon_Game</RootNamespace>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DotNetDungeon-Configs\DotNetDungeon-Configs.csproj" />
+    <ProjectReference Include="..\DotNetDungeon-Models\DotNetDungeon-Models.csproj" />
+    <ProjectReference Include="..\DotNetDungeon-Services\DotNetDungeon-Services.csproj" />
+  </ItemGroup>
+</Project>

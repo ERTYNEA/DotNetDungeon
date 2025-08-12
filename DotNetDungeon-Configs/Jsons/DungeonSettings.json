@@ -1,0 +1,8 @@
+{
+	"RoomNumberForLevelMin": 5,
+	"RoomNumberForLevelMax": 10,
+	"RoomHeightMin": 5,
+	"RoomHeightMax": 10,
+	"RoomWidthMin": 5,
+	"RoomWidthMax": 10
+}
