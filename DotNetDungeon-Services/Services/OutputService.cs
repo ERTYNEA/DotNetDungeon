@@ -5,10 +5,21 @@ using System;
 
 public class OutputService : IOutputService
 {
+	private readonly TextWriter writer;
+
 	/// <summary>
-	/// Prints a 2D character matrix to the console
+	/// Initializes a new instance of the <see cref="OutputService"/> class.
 	/// </summary>
-	/// <param name="matrix">The character matrix to print</param>
+	/// <param name="writer">The text writer to use for output.</param>
+	public OutputService(TextWriter writer)
+	{
+		this.writer = writer;
+	}
+
+	/// <summary>
+	/// Prints a 2D character matrix.
+	/// </summary>
+	/// <param name="matrix">The character matrix to print.</param>
 	public void PrintMatrix(char[,] matrix)
 	{
 		// Validate the input matrix
@@ -19,13 +30,13 @@ public class OutputService : IOutputService
 		int rows = matrix.GetLength(0);
 		int columns = matrix.GetLength(1);
 
-		// Print the matrix to the console
+		// Print the matrix
 		for (int i = 0; i < rows; i++)
 		{
 			for (int j = 0; j < columns; j++)
-				Console.Write(matrix[i, j]);
+				writer.Write(matrix[i, j]);
 
-			Console.WriteLine();
+			writer.WriteLine();
 		}
 	}
 }

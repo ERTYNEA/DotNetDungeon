@@ -5,7 +5,7 @@ using DotNetDungeon_Services.Services;
 
 IJsonService jsonService = new JsonService();
 IGameService gameService = new GameService();
-IOutputService outputService = new OutputService();
+IOutputService outputService = new OutputService(Console.Out);
 
 var worldSettings = jsonService.ConvertJsonPathToModelObject(PathsConst.WorldSettingsPath, new WorldSettingsModel());
 var dungeonSettings = jsonService.ConvertJsonPathToModelObject(PathsConst.DungeonSettingsPath, new DungeonSettingsModel());
