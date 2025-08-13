@@ -1,5 +1,17 @@
 {
-	"Nothing": " ",
-	"Wall": "#",
-	"Floor": "."
+	"Nothing": {
+		"CharacterChar": " ",
+		"CharacterColorText": "Black",
+		"CharacterColorBackground": "Black"
+	},
+	"Wall": {
+		"CharacterChar": "#",
+		"CharacterColorText": "LightGray",
+		"CharacterColorBackground": "White"
+	},
+	"Floor": {
+		"CharacterChar": ".",
+		"CharacterColorText": "DarkGray",
+		"CharacterColorBackground": "Black"
+	}
 }

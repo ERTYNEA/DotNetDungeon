@@ -1,10 +1,12 @@
+using DotNetDungeon_Objets;
+
 namespace DotNetDungeon_Services.Interfaces;
 
 public interface IOutputService
 {
 	/// <summary>
-	/// Prints a 2D character matrix to the console
+	/// Prints a 2D TitleObject matrix to the console with colors
 	/// </summary>
-	/// <param name="matrix">The character matrix to print</param>
-	void PrintMatrix(char[,] matrix);
+	/// <param name="matrix">The TitleObject matrix to print</param>
+	void PrintMatrix(TitleObject[,] matrix);
 }

@@ -1,7 +1,10 @@
 namespace DotNetDungeon_Services.Services;
 
+using DotNetDungeon_Objets;
 using DotNetDungeon_Services.Interfaces;
 using System;
+using System.Drawing;
+using Console = Colorful.Console;
 
 public class OutputService : IOutputService
 {
@@ -17,10 +20,10 @@ public class OutputService : IOutputService
 	}
 
 	/// <summary>
-	/// Prints a 2D character matrix.
+	/// Prints a 2D TitleObject matrix with colors.
 	/// </summary>
-	/// <param name="matrix">The character matrix to print.</param>
-	public void PrintMatrix(char[,] matrix)
+	/// <param name="matrix">The TitleObject matrix to print.</param>
+	public void PrintMatrix(TitleObject[,] matrix)
 	{
 		// Validate the input matrix
 		if (matrix == null)
@@ -30,13 +33,18 @@ public class OutputService : IOutputService
 		int rows = matrix.GetLength(0);
 		int columns = matrix.GetLength(1);
 
-		// Print the matrix
+		// Print the matrix with colors
 		for (int i = 0; i < rows; i++)
 		{
 			for (int j = 0; j < columns; j++)
-				writer.Write(matrix[i, j]);
+			{
+				TitleObject titleObj = matrix[i, j];
+				Console.BackgroundColor = titleObj.CharacterColorBackground;
+				Console.Write(titleObj.CharacterChar.ToString(), titleObj.CharacterColorText);
+			}
 
-			writer.WriteLine();
+			Console.BackgroundColor = Color.Black; // Reset background color for new line
+			Console.WriteLine();
 		}
 	}
 }

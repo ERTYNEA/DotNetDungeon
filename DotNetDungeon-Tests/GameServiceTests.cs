@@ -1,19 +1,47 @@
 namespace DotNetDungeon_Tests;
 
 using FluentAssertions;
+using DotNetDungeon_Objets;
 using DotNetDungeon_Services.Services;
+using DotNetDungeon_Services.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Drawing;
 
 [TestClass]
 public sealed class GameServiceTests
 {
-	private GameService gameService = null!;
+	private IGameService gameService = null!;
+	private TitleObject nothingTitleObject = null!;
+	private TitleObject wallTitleObject = null!;
+	private TitleObject floorTitleObject = null!;
 
 	[TestInitialize]
 	public void Initialize()
 	{
 		// Create a new instance of the service
 		gameService = new GameService();
+
+		// Initialize test TitleObjects
+		nothingTitleObject = new TitleObject
+		{
+			CharacterChar = ' ',
+			CharacterColorText = Color.Black,
+			CharacterColorBackground = Color.Black
+		};
+
+		wallTitleObject = new TitleObject
+		{
+			CharacterChar = '#',
+			CharacterColorText = Color.LightGray,
+			CharacterColorBackground = Color.White
+		};
+
+		floorTitleObject = new TitleObject
+		{
+			CharacterChar = '.',
+			CharacterColorText = Color.DarkGray,
+			CharacterColorBackground = Color.Black
+		};
 	}
 
 	[TestMethod]
@@ -28,9 +56,6 @@ public sealed class GameServiceTests
 		int roomHeightMax = 10;
 		int roomWidthMin = 5;
 		int roomWidthMax = 10;
-		char nothingChar = ' ';
-		char wallChar = '#';
-		char floorChar = '.';
 
 		// Act
 		var result = gameService.GenerateDungeonLevel(
@@ -42,9 +67,9 @@ public sealed class GameServiceTests
 			roomHeightMax,
 			roomWidthMin,
 			roomWidthMax,
-			nothingChar,
-			wallChar,
-			floorChar);
+			nothingTitleObject,
+			wallTitleObject,
+			floorTitleObject);
 
 		// Assert
 		result.Should().NotBeNull();
@@ -52,6 +77,7 @@ public sealed class GameServiceTests
 		result.GetLength(1).Should().Be(width);
 	}
 
+	[TestMethod]
 	public void GenerateDungeonLevel_MatrixHasNothingChar()
 	{
 		// Arrange
@@ -63,9 +89,6 @@ public sealed class GameServiceTests
 		int roomHeightMax = 10;
 		int roomWidthMin = 5;
 		int roomWidthMax = 10;
-		char nothingChar = ' ';
-		char wallChar = '#';
-		char floorChar = '.';
 
 		// Act
 		var result = gameService.GenerateDungeonLevel(
@@ -77,20 +100,21 @@ public sealed class GameServiceTests
 			roomHeightMax,
 			roomWidthMin,
 			roomWidthMax,
-			nothingChar,
-			wallChar,
-			floorChar);
+			nothingTitleObject,
+			wallTitleObject,
+			floorTitleObject);
 
 		// Assert
 		bool hasNothingChar = false;
 		for (int y = 0; y < height && !hasNothingChar; y++)
 			for (int x = 0; x < width && !hasNothingChar; x++)
-				if (result[y, x] == ' ')
+				if (result[y, x].CharacterChar == nothingTitleObject.CharacterChar)
 					hasNothingChar = true;
 
 		hasNothingChar.Should().BeTrue();
 	}
 
+	[TestMethod]
 	public void GenerateDungeonLevel_MatrixHasWallChar()
 	{
 		// Arrange
@@ -102,9 +126,6 @@ public sealed class GameServiceTests
 		int roomHeightMax = 10;
 		int roomWidthMin = 5;
 		int roomWidthMax = 10;
-		char nothingChar = ' ';
-		char wallChar = '#';
-		char floorChar = '.';
 
 		// Act
 		var result = gameService.GenerateDungeonLevel(
@@ -116,15 +137,15 @@ public sealed class GameServiceTests
 			roomHeightMax,
 			roomWidthMin,
 			roomWidthMax,
-			nothingChar,
-			wallChar,
-			floorChar);
+			nothingTitleObject,
+			wallTitleObject,
+			floorTitleObject);
 
 		// Assert
 		bool hasWallChar = false;
 		for (int y = 0; y < height && !hasWallChar; y++)
 			for (int x = 0; x < width && !hasWallChar; x++)
-				if (result[y, x] == wallChar)
+				if (result[y, x].CharacterChar == wallTitleObject.CharacterChar)
 					hasWallChar = true;
 
 		hasWallChar.Should().BeTrue();
@@ -142,9 +163,6 @@ public sealed class GameServiceTests
 		int roomHeightMax = 10;
 		int roomWidthMin = 5;
 		int roomWidthMax = 10;
-		char nothingChar = ' ';
-		char wallChar = '#';
-		char floorChar = '.';
 
 		// Act
 		var result = gameService.GenerateDungeonLevel(
@@ -156,15 +174,15 @@ public sealed class GameServiceTests
 			roomHeightMax,
 			roomWidthMin,
 			roomWidthMax,
-			nothingChar,
-			wallChar,
-			floorChar);
+			nothingTitleObject,
+			wallTitleObject,
+			floorTitleObject);
 
 		// Assert
 		bool hasFloorChar = false;
 		for (int y = 0; y < height && !hasFloorChar; y++)
 			for (int x = 0; x < width && !hasFloorChar; x++)
-				if (result[y, x] == floorChar)
+				if (result[y, x].CharacterChar == floorTitleObject.CharacterChar)
 					hasFloorChar = true;
 
 		hasFloorChar.Should().BeTrue();
@@ -182,9 +200,6 @@ public sealed class GameServiceTests
 		int roomHeightMax = 10;
 		int roomWidthMin = 5;
 		int roomWidthMax = 10;
-		char nothingChar = ' ';
-		char wallChar = '#';
-		char floorChar = '.';
 
 		// Act
 		var result = gameService.GenerateDungeonLevel(
@@ -196,9 +211,9 @@ public sealed class GameServiceTests
 			roomHeightMax,
 			roomWidthMin,
 			roomWidthMax,
-			nothingChar,
-			wallChar,
-			floorChar);
+			nothingTitleObject,
+			wallTitleObject,
+			floorTitleObject);
 
 		// Assert
 		bool hasWallChar = false;
@@ -206,9 +221,9 @@ public sealed class GameServiceTests
 		for (int y = 0; y < height && !hasWallChar && !hasFloorChar; y++)
 			for (int x = 0; x < width && !hasWallChar && !hasFloorChar; x++)
 			{
-				if (result[y, x] == wallChar)
+				if (result[y, x].CharacterChar == wallTitleObject.CharacterChar)
 					hasWallChar = true;
-				if (result[y, x] == floorChar)
+				if (result[y, x].CharacterChar == floorTitleObject.CharacterChar)
 					hasFloorChar = true;
 			}
 
