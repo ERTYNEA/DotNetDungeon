@@ -23,17 +23,17 @@ public class GameService : IGameService
 	/// <param name="floorTitleObject">TitleObject representing floors</param>
 	/// <returns>A 2D TitleObject matrix representing the generated dungeon</returns>
 	public TitleObject[,] GenerateDungeonLevel(
-	int height,
-	int width,
-	int roomNumberForLevelMin,
-	int roomNumberForLevelMax,
-	int roomHeightMin,
-	int roomHeightMax,
-	int roomWidthMin,
-	int roomWidthMax,
-	TitleObject nothingTitleObject,
-	TitleObject wallTitleObject,
-	TitleObject floorTitleObject)
+		int height,
+		int width,
+		int roomNumberForLevelMin,
+		int roomNumberForLevelMax,
+		int roomHeightMin,
+		int roomHeightMax,
+		int roomWidthMin,
+		int roomWidthMax,
+		TitleObject nothingTitleObject,
+		TitleObject wallTitleObject,
+		TitleObject floorTitleObject)
 	{
 		// Create a 2D TitleObject matrix to represent the dungeon level grid
 		TitleObject[,] dungeonLevelMatrix = new TitleObject[height, width];
@@ -41,12 +41,7 @@ public class GameService : IGameService
 		// Initialize the dungeon matrix by filling it completely with empty space (nothingTitleObject)
 		for (int y = 0; y < height; y++)
 			for (int x = 0; x < width; x++)
-				dungeonLevelMatrix[y, x] = new TitleObject
-				{
-					CharacterChar = nothingTitleObject.CharacterChar,
-					CharacterColorText = nothingTitleObject.CharacterColorText,
-					CharacterColorBackground = nothingTitleObject.CharacterColorBackground
-				};
+				dungeonLevelMatrix[y, x] = nothingTitleObject;
 
 		// Create an empty list to store all rooms that will be generated
 		List<RoomObject> rooms = new List<RoomObject>();
@@ -78,10 +73,10 @@ public class GameService : IGameService
 			{
 				// Check for internal overlap between rooms
 				bool innerOverlap =
-				newRoom.X < existingRoom.X + existingRoom.Width &&
-				newRoom.X + newRoom.Width > existingRoom.X &&
-				newRoom.Y < existingRoom.Y + existingRoom.Height &&
-				newRoom.Y + newRoom.Height > existingRoom.Y;
+					newRoom.X < existingRoom.X + existingRoom.Width &&
+					newRoom.X + newRoom.Width > existingRoom.X &&
+					newRoom.Y < existingRoom.Y + existingRoom.Height &&
+					newRoom.Y + newRoom.Height > existingRoom.Y;
 
 				// If rooms overlap exit the loop
 				if (innerOverlap)
@@ -96,12 +91,7 @@ public class GameService : IGameService
 		foreach (RoomObject room in rooms)
 			for (int y = room.Y; y < room.Y + room.Height; y++)
 				for (int x = room.X; x < room.X + room.Width; x++)
-					dungeonLevelMatrix[y, x] = new TitleObject
-					{
-						CharacterChar = floorTitleObject.CharacterChar,
-						CharacterColorText = floorTitleObject.CharacterColorText,
-						CharacterColorBackground = floorTitleObject.CharacterColorBackground
-					};
+					dungeonLevelMatrix[y, x] = floorTitleObject;
 
 		// Create lists to track room clusters for ensuring dungeon connectivity
 		List<RoomObject> remainingRooms = new List<RoomObject>(rooms);
@@ -136,19 +126,19 @@ public class GameService : IGameService
 					{
 						// Check if rooms are adjacent horizontally with any vertical overlap
 						bool horizontalConnection =
-						(roomToCheck.X + roomToCheck.Width == clusterRoom.X || clusterRoom.X + clusterRoom.Width == roomToCheck.X) &&
-						((roomToCheck.Y >= clusterRoom.Y && roomToCheck.Y < clusterRoom.Y + clusterRoom.Height) ||
-						(roomToCheck.Y + roomToCheck.Height > clusterRoom.Y && roomToCheck.Y + roomToCheck.Height <= clusterRoom.Y + clusterRoom.Height) ||
-						(clusterRoom.Y >= roomToCheck.Y && clusterRoom.Y < roomToCheck.Y + roomToCheck.Height) ||
-						(clusterRoom.Y + clusterRoom.Height > roomToCheck.Y && clusterRoom.Y + clusterRoom.Height <= roomToCheck.Y + roomToCheck.Height));
+							(roomToCheck.X + roomToCheck.Width == clusterRoom.X || clusterRoom.X + clusterRoom.Width == roomToCheck.X) &&
+							((roomToCheck.Y >= clusterRoom.Y && roomToCheck.Y < clusterRoom.Y + clusterRoom.Height) ||
+							(roomToCheck.Y + roomToCheck.Height > clusterRoom.Y && roomToCheck.Y + roomToCheck.Height <= clusterRoom.Y + clusterRoom.Height) ||
+							(clusterRoom.Y >= roomToCheck.Y && clusterRoom.Y < roomToCheck.Y + roomToCheck.Height) ||
+							(clusterRoom.Y + clusterRoom.Height > roomToCheck.Y && clusterRoom.Y + clusterRoom.Height <= roomToCheck.Y + roomToCheck.Height));
 
 						// Check if rooms are adjacent vertically with any horizontal overlap
 						bool verticalConnection =
-						(roomToCheck.Y + roomToCheck.Height == clusterRoom.Y || clusterRoom.Y + clusterRoom.Height == roomToCheck.Y) &&
-						((roomToCheck.X >= clusterRoom.X && roomToCheck.X < clusterRoom.X + clusterRoom.Width) ||
-						(roomToCheck.X + roomToCheck.Width > clusterRoom.X && roomToCheck.X + roomToCheck.Width <= clusterRoom.X + clusterRoom.Width) ||
-						(clusterRoom.X >= roomToCheck.X && clusterRoom.X < roomToCheck.X + roomToCheck.Width) ||
-						(clusterRoom.X + clusterRoom.Width > roomToCheck.X && clusterRoom.X + clusterRoom.Width <= roomToCheck.X + roomToCheck.Width));
+							(roomToCheck.Y + roomToCheck.Height == clusterRoom.Y || clusterRoom.Y + clusterRoom.Height == roomToCheck.Y) &&
+							((roomToCheck.X >= clusterRoom.X && roomToCheck.X < clusterRoom.X + clusterRoom.Width) ||
+							(roomToCheck.X + roomToCheck.Width > clusterRoom.X && roomToCheck.X + roomToCheck.Width <= clusterRoom.X + clusterRoom.Width) ||
+							(clusterRoom.X >= roomToCheck.X && clusterRoom.X < roomToCheck.X + roomToCheck.Width) ||
+							(clusterRoom.X + clusterRoom.Width > roomToCheck.X && clusterRoom.X + clusterRoom.Width <= roomToCheck.X + roomToCheck.Width));
 
 						// If a connection exists, add the room to the current cluster and mark it for removal
 						if (horizontalConnection || verticalConnection)
@@ -249,12 +239,7 @@ public class GameService : IGameService
 					for (int x = horizontalStartX; x <= horizontalEndX; x++)
 						for (int y = horizontalY - corridorHeight / 2; y <= horizontalY + corridorHeight / 2; y++)
 							if (x >= 0 && x < width && y >= 0 && y < height)
-								dungeonLevelMatrix[y, x] = new TitleObject
-								{
-									CharacterChar = floorTitleObject.CharacterChar,
-									CharacterColorText = floorTitleObject.CharacterColorText,
-									CharacterColorBackground = floorTitleObject.CharacterColorBackground
-								};
+								dungeonLevelMatrix[y, x] = floorTitleObject;
 
 					// Calculate the vertical corridor position
 					int verticalStartY = Math.Min(centerY1, centerY2);
@@ -267,24 +252,14 @@ public class GameService : IGameService
 					for (int y = verticalStartY; y <= verticalEndY; y++)
 						for (int x = verticalX - corridorWidth / 2; x <= verticalX + corridorWidth / 2; x++)
 							if (x >= 0 && x < width && y >= 0 && y < height)
-								dungeonLevelMatrix[y, x] = new TitleObject
-								{
-									CharacterChar = floorTitleObject.CharacterChar,
-									CharacterColorText = floorTitleObject.CharacterColorText,
-									CharacterColorBackground = floorTitleObject.CharacterColorBackground
-								};
+								dungeonLevelMatrix[y, x] = floorTitleObject;
 
 					// Fill the corner area
 					int cornerSize = Math.Max(corridorWidth, corridorHeight);
 					for (int y = horizontalY - cornerSize / 2; y <= horizontalY + cornerSize / 2; y++)
 						for (int x = verticalX - cornerSize / 2; x <= verticalX + cornerSize / 2; x++)
 							if (x >= 0 && x < width && y >= 0 && y < height)
-								dungeonLevelMatrix[y, x] = new TitleObject
-								{
-									CharacterChar = floorTitleObject.CharacterChar,
-									CharacterColorText = floorTitleObject.CharacterColorText,
-									CharacterColorBackground = floorTitleObject.CharacterColorBackground
-								};
+								dungeonLevelMatrix[y, x] = floorTitleObject;
 
 					// Connect the clusters
 					connectedClusters.Add(closestCluster2);
@@ -310,12 +285,7 @@ public class GameService : IGameService
 							// If adjacent cell is outside the dungeon bounds or contains nothing
 							if (newY < 0 || newY >= height || newX < 0 || newX >= width ||
 							dungeonLevelMatrix[newY, newX].CharacterChar == nothingTitleObject.CharacterChar)
-								dungeonLevelMatrix[y, x] = new TitleObject
-								{
-									CharacterChar = wallTitleObject.CharacterChar,
-									CharacterColorText = wallTitleObject.CharacterColorText,
-									CharacterColorBackground = wallTitleObject.CharacterColorBackground
-								};
+								dungeonLevelMatrix[y, x] = wallTitleObject;
 						}
 
 		// return the generated dungeon level matrix

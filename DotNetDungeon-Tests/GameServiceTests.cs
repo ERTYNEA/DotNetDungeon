@@ -1,9 +1,9 @@
 namespace DotNetDungeon_Tests;
 
-using FluentAssertions;
 using DotNetDungeon_Objets;
-using DotNetDungeon_Services.Services;
 using DotNetDungeon_Services.Interfaces;
+using DotNetDungeon_Services.Services;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Drawing;
 
@@ -21,7 +21,7 @@ public sealed class GameServiceTests
 		// Create a new instance of the service
 		gameService = new GameService();
 
-		// Initialize test TitleObjects
+		// Initialize TitleObject
 		nothingTitleObject = new TitleObject
 		{
 			CharacterChar = ' ',
@@ -29,6 +29,7 @@ public sealed class GameServiceTests
 			CharacterColorBackground = Color.Black
 		};
 
+		// Initialize TitleObject
 		wallTitleObject = new TitleObject
 		{
 			CharacterChar = '#',
@@ -36,6 +37,7 @@ public sealed class GameServiceTests
 			CharacterColorBackground = Color.White
 		};
 
+		// Initialize TitleObject
 		floorTitleObject = new TitleObject
 		{
 			CharacterChar = '.',

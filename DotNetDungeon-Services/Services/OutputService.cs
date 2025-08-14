@@ -8,17 +8,6 @@ using Console = Colorful.Console;
 
 public class OutputService : IOutputService
 {
-	private readonly TextWriter writer;
-
-	/// <summary>
-	/// Initializes a new instance of the <see cref="OutputService"/> class.
-	/// </summary>
-	/// <param name="writer">The text writer to use for output.</param>
-	public OutputService(TextWriter writer)
-	{
-		this.writer = writer;
-	}
-
 	/// <summary>
 	/// Prints a 2D TitleObject matrix with colors.
 	/// </summary>
@@ -38,12 +27,18 @@ public class OutputService : IOutputService
 		{
 			for (int j = 0; j < columns; j++)
 			{
-				TitleObject titleObj = matrix[i, j];
-				Console.BackgroundColor = titleObj.CharacterColorBackground;
-				Console.Write(titleObj.CharacterChar.ToString(), titleObj.CharacterColorText);
+				// Get the TitleObject at the current position
+				TitleObject titleObject = matrix[i, j];
+
+				// Set the background color and print the character
+				Console.BackgroundColor = titleObject.CharacterColorBackground;
+				Console.Write(titleObject.CharacterChar.ToString(), titleObject.CharacterColorText);
 			}
 
-			Console.BackgroundColor = Color.Black; // Reset background color for new line
+			// Reset background color for new line
+			Console.BackgroundColor = Color.Black;
+
+			// Move to the next line
 			Console.WriteLine();
 		}
 	}
