@@ -26,7 +26,7 @@ The project is now in version V.0.1.1! We have successfully implemented colorful
 Stay tuned as we continue to expand this vibrant ASCII adventure!
 
 <p align="center">
-  <img src="Images/Capture_01.png" alt="DotNetDungeon Gameplay Screenshot">
+  <img src="Images/Capture_02.png" alt="DotNetDungeon Gameplay Screenshot">
 </p>
 
 ## Requirements
