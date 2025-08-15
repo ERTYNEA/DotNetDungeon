@@ -1,10 +1,10 @@
-# DotNetDungeon V.0.1.0
+# DotNetDungeon V.0.1.1
 
 <p align="center">
   <img src="Images/Banner_small.png" alt="DotNetDungeon Banner">
 </p>
 
-Hello Brave Adventurer! Welcome to **DotNetDungeon V.0.1.0**, an ASCII roguelike dungeon crawler inspired by classics like NetHack!
+Hello Brave Adventurer! Welcome to **DotNetDungeon V.0.1.1**, an ASCII roguelike dungeon crawler inspired by classics like NetHack!
 
 ## About the Project
 
@@ -12,21 +12,21 @@ DotNetDungeon is an exciting roguelike adventure built with .NET where you'll na
 
 ### Current Status
 
-The project is currently in its early development phase (V.0.1.0). We have successfully implemented the dungeon generation system. The upcoming version (V.0.1.1) will introduce colors to the ASCII dungeon environment to enhance the visual experience.
+The project is now in version V.0.1.1! We have successfully implemented colorful dungeon visualization, bringing life to the ASCII environment. The dungeon now features colored walls, floors, and empty spaces that enhance the visual experience.
 
-### Features in Progress
+### Features
 - Procedural dungeon generation (✓ Completed in V.0.1.0)
-- Colorful dungeon elements (Coming in V.0.1.1)
+- Colorful dungeon elements (✓ Completed in V.0.1.1)
 - Character creation and progression (Planning phase)
 - Non-playable enemies and monsters (Planning phase)
 - Dungeon items and interactive elements (Planning phase)
 - Survival mechanics and crafting system (Planning phase)
 - Multiplayer collaborative gameplay (Long-term vision)
 
-Stay tuned as we continue to expand this ASCII adventure!
+Stay tuned as we continue to expand this vibrant ASCII adventure!
 
 <p align="center">
-  <img src="Images/Capture_01.png" alt="DotNetDungeon Gameplay Screenshot">
+  <img src="Images/Capture_02.png" alt="DotNetDungeon Gameplay Screenshot">
 </p>
 
 ## Requirements

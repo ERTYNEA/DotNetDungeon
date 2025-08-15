@@ -1,5 +1,6 @@
 namespace DotNetDungeon_Tests;
 
+using DotNetDungeon_Services.Interfaces;
 using DotNetDungeon_Services.Services;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -9,7 +10,7 @@ using System.IO;
 [TestClass]
 public sealed class JsonServiceTests
 {
-	private JsonService jsonService = null!;
+	private IJsonService jsonService = null!;
 	private string testFilesPath = null!;
 
 	[TestInitialize]
