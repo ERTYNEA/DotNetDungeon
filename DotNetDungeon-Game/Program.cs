@@ -3,7 +3,7 @@ using DotNetDungeon_Models;
 using DotNetDungeon_Objets;
 using DotNetDungeon_Services.Interfaces;
 using DotNetDungeon_Services.Services;
-using System.Drawing;
+using Spectre.Console;
 
 IJsonService jsonService = new JsonService();
 IGameService gameService = new GameService();
@@ -52,12 +52,12 @@ Color nothingCharacterColorText, nothingCharacterColorBackground, wallCharacterC
 
 try
 {
-	nothingCharacterColorText = Color.FromName(dungeonCharSettings.Nothing.CharacterColorText);
-	nothingCharacterColorBackground = Color.FromName(dungeonCharSettings.Nothing.CharacterColorBackground);
-	wallCharacterColorText = Color.FromName(dungeonCharSettings.Wall.CharacterColorText);
-	wallCharacterColorBackground = Color.FromName(dungeonCharSettings.Wall.CharacterColorBackground);
-	floorCharacterColorText = Color.FromName(dungeonCharSettings.Floor.CharacterColorText);
-	floorCharacterColorBackground = Color.FromName(dungeonCharSettings.Floor.CharacterColorBackground);
+	nothingCharacterColorText = outputService.HexadecimalStringToColor(dungeonCharSettings.Nothing.CharacterColorText);
+	nothingCharacterColorBackground = outputService.HexadecimalStringToColor(dungeonCharSettings.Nothing.CharacterColorBackground);
+	wallCharacterColorText = outputService.HexadecimalStringToColor(dungeonCharSettings.Wall.CharacterColorText);
+	wallCharacterColorBackground = outputService.HexadecimalStringToColor(dungeonCharSettings.Wall.CharacterColorBackground);
+	floorCharacterColorText = outputService.HexadecimalStringToColor(dungeonCharSettings.Floor.CharacterColorText);
+	floorCharacterColorBackground = outputService.HexadecimalStringToColor(dungeonCharSettings.Floor.CharacterColorBackground);
 }
 catch (Exception)
 {

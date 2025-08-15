@@ -2,12 +2,47 @@ namespace DotNetDungeon_Services.Services;
 
 using DotNetDungeon_Objets;
 using DotNetDungeon_Services.Interfaces;
+using Spectre.Console;
 using System;
-using System.Drawing;
-using Console = Colorful.Console;
+using System.Globalization;
 
 public class OutputService : IOutputService
 {
+	/// <summary>
+	/// Converts a hexadecimal string to a Spectre.Console Color object.
+	/// </summary>
+	/// <param name="hexadecimalStringColor">Hexadecimal string color (format: #RRGGBB).</param>
+	/// <returns>Spectre.Console Color object.</returns>
+	public Color HexadecimalStringToColor(string hexadecimalStringColor)
+	{
+		// Verify that the string is not null or empty
+		if (string.IsNullOrWhiteSpace(hexadecimalStringColor))
+			throw new Exception();
+
+		// If the string starts with '#', remove it
+		if (hexadecimalStringColor[0] == '#')
+			hexadecimalStringColor = hexadecimalStringColor.Substring(1);
+
+		// Verify that the length is valid for RGB (6 characters)
+		if (hexadecimalStringColor.Length != 6)
+			throw new Exception();
+
+		try
+		{
+			// Convert the hexadecimal parts to RGB values
+			int r = int.Parse(hexadecimalStringColor.Substring(0, 2), NumberStyles.HexNumber);
+			int g = int.Parse(hexadecimalStringColor.Substring(2, 2), NumberStyles.HexNumber);
+			int b = int.Parse(hexadecimalStringColor.Substring(4, 2), NumberStyles.HexNumber);
+
+			// Create and return the Color object
+			return new Color((byte)r, (byte)g, (byte)b);
+		}
+		catch (FormatException)
+		{
+			throw new Exception();
+		}
+	}
+
 	/// <summary>
 	/// Prints a 2D TitleObject matrix with colors.
 	/// </summary>
@@ -30,16 +65,17 @@ public class OutputService : IOutputService
 				// Get the TitleObject at the current position
 				TitleObject titleObject = matrix[i, j];
 
-				// Set the background color and print the character
-				Console.BackgroundColor = titleObject.CharacterColorBackground;
-				Console.Write(titleObject.CharacterChar.ToString(), titleObject.CharacterColorText);
+				// Create a styled colors text with background
+				var style = new Style()
+					.Foreground(titleObject.CharacterColorText)
+					.Background(titleObject.CharacterColorBackground);
+
+				// Write the styled colors text with background
+				AnsiConsole.Write(new Text(titleObject.CharacterChar.ToString(), style));
 			}
 
-			// Reset background color for new line
-			Console.BackgroundColor = Color.Black;
-
 			// Move to the next line
-			Console.WriteLine();
+			AnsiConsole.WriteLine();
 		}
 	}
 }

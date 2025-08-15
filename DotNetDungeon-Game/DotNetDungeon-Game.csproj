@@ -7,6 +7,9 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Spectre.Console" Version="0.50.0" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\DotNetDungeon-Configs\DotNetDungeon-Configs.csproj" />
     <ProjectReference Include="..\DotNetDungeon-Models\DotNetDungeon-Models.csproj" />
     <ProjectReference Include="..\DotNetDungeon-Services\DotNetDungeon-Services.csproj" />

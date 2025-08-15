@@ -5,8 +5,8 @@ using DotNetDungeon_Services.Interfaces;
 using DotNetDungeon_Services.Services;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Spectre.Console;
 using System;
-using System.Drawing;
 
 [TestClass]
 public sealed class OutputServiceTests
@@ -18,6 +18,63 @@ public sealed class OutputServiceTests
 	{
 		// Create a new instance of the service
 		outputService = new OutputService();
+	}
+
+	[TestMethod]
+	public void HexadecimalStringToColor_NullParameter()
+	{
+		// Arrange
+		string nullColor = null!;
+
+		// Act
+		Action act = () => outputService.HexadecimalStringToColor(nullColor);
+
+		// Assert
+		act.Should().Throw<Exception>();
+	}
+
+	[TestMethod]
+	public void HexadecimalStringToColor_WhiteSpaceParameter()
+	{
+		// Arrange
+		string whiteSpaceColor = " ";
+
+		// Act
+		Action act = () => outputService.HexadecimalStringToColor(whiteSpaceColor);
+
+		// Assert
+		act.Should().Throw<Exception>();
+	}
+
+	[TestMethod]
+	public void HexadecimalStringToColor_InvalidLength()
+	{
+		// Arrange
+		string shortColor = "#12345";
+		string longColor = "#1234567";
+
+		// Act
+		Action actShort = () => outputService.HexadecimalStringToColor(shortColor);
+		Action actLong = () => outputService.HexadecimalStringToColor(longColor);
+
+		// Assert
+		actShort.Should().Throw<Exception>();
+		actLong.Should().Throw<Exception>();
+	}
+
+	[TestMethod]
+	public void HexadecimalStringToColor_ValidParameter()
+	{
+		// Arrange
+		string validColor = "#FFFFFF";
+
+		// Act
+		Color result = outputService.HexadecimalStringToColor(validColor);
+
+		// Assert
+		result.R.Should().Be(255);
+		result.G.Should().Be(255);
+		result.B.Should().Be(255);
 	}
 
 	[TestMethod]

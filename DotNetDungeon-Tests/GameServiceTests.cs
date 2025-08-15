@@ -5,7 +5,7 @@ using DotNetDungeon_Services.Interfaces;
 using DotNetDungeon_Services.Services;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Drawing;
+using Spectre.Console;
 
 [TestClass]
 public sealed class GameServiceTests
@@ -33,7 +33,7 @@ public sealed class GameServiceTests
 		wallTitleObject = new TitleObject
 		{
 			CharacterChar = '#',
-			CharacterColorText = Color.LightGray,
+			CharacterColorText = Color.Grey,
 			CharacterColorBackground = Color.White
 		};
 
@@ -41,7 +41,7 @@ public sealed class GameServiceTests
 		floorTitleObject = new TitleObject
 		{
 			CharacterChar = '.',
-			CharacterColorText = Color.DarkGray,
+			CharacterColorText = Color.Grey69,
 			CharacterColorBackground = Color.Black
 		};
 	}

@@ -1,17 +1,17 @@
 {
 	"Nothing": {
 		"CharacterChar": " ",
-		"CharacterColorText": "Black",
-		"CharacterColorBackground": "Black"
+		"CharacterColorText": "#000000",
+		"CharacterColorBackground": "#000000"
 	},
 	"Wall": {
 		"CharacterChar": "#",
-		"CharacterColorText": "LightGray",
-		"CharacterColorBackground": "White"
+		"CharacterColorText": "#CCCCCC",
+		"CharacterColorBackground": "#FFFFFF"
 	},
 	"Floor": {
 		"CharacterChar": ".",
-		"CharacterColorText": "DarkGray",
-		"CharacterColorBackground": "Black"
+		"CharacterColorText": "#666666",
+		"CharacterColorBackground": "#000000"
 	}
 }
